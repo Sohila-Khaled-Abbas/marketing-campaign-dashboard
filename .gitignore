@@ -1,2 +1,10 @@
 .env
 __pycache__/
+
+# Local credentials and runtime output
+.streamlit/secrets.toml
+.streamlit/secrets.*.toml
+.env.*
+!.env.example
+.venv/
+.pytest_cache/
