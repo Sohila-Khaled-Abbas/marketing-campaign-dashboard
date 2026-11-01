@@ -17,12 +17,15 @@ st.set_page_config(
 # --------------------------------------------------
 # DATABASE CONNECTION
 # --------------------------------------------------
-from sqlalchemy import create_engine
-import streamlit as st
-
 engine = create_engine(
-    f"postgresql+psycopg2://{st.secrets['DB_USER']}:{st.secrets['DB_PASSWORD']}@"
-    f"{st.secrets['DB_HOST']}:{st.secrets['DB_PORT']}/{st.secrets['DB_NAME']}",
+    URL.create(
+        "postgresql+psycopg2",
+        username=st.secrets["DB_USER"],
+        password=st.secrets["DB_PASSWORD"],
+        host=st.secrets["DB_HOST"],
+        port=int(st.secrets["DB_PORT"]),
+        database=st.secrets["DB_NAME"],
+    ),
     pool_pre_ping=True,
     pool_recycle=300,
     connect_args={"sslmode": "require"},
